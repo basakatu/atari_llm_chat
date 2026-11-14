@@ -4,9 +4,9 @@
 
 This project connects vintage **Atari 8-bit computers** to modern artificial intelligence models running locally via **Ollama**. It consists of two primary components working in tandem:
 
-1. **Atari BASIC Client (`chat14_.txt`)**: A feature-rich terminal application written in Atari BASIC for 8-bit Atari computers. It manages serial communication over the `R1:` handler (via the Atari 850 interface / R-Device), renders a custom hardware-accelerated status bar using Display List Interrupts (DLI), formats ATASCII text, and provides real-time status indicators (connection status, RTC clock, animated thinking dots, software cursor blinking, and dynamic color customization).
+1. **Atari BASIC Client (`chat.bas`)**: A feature-rich terminal application written in Atari BASIC for 8-bit Atari computers. It manages serial communication over the `R1:` handler (via the Atari 850 interface / R-Device), renders a custom hardware-accelerated status bar using Display List Interrupts (DLI), formats ATASCII text, and provides real-time status indicators (connection status, RTC clock, animated thinking dots, software cursor blinking, and dynamic color customization).
 
-2. **Python Bridge Server (`atari_bridge.txt`)**: A local TCP socket server (`127.0.0.1:8080`) that bridges the Atari terminal with an Ollama LLM endpoint. The bridge handles the technical constraints of vintage 8-bit hardware by:
+2. **Python Bridge Server (`atari_bridge.py`)**: A local TCP socket server (`127.0.0.1:8080`) that bridges the Atari terminal with an Ollama LLM endpoint. The bridge handles the technical constraints of vintage 8-bit hardware by:
    - Formatting text to fit the 37-column Atari text mode (`SCREEN_WIDTH = 37`), stripping unsupported Markdown/Unicode formatting, and converting Polish diacritics to standard ASCII.
    - Pacing data transmission (`CHARS_PER_SEC = 100`, adjustable via `/TYPESPEED`) to prevent serial buffer overruns on the Atari R-Device handler.
    - Injecting real-time context dynamically into prompt templates (local time/date, live weather forecasts via Open-Meteo API).
